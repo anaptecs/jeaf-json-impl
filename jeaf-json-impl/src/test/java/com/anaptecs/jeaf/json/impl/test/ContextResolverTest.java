@@ -5,12 +5,10 @@
  */
 package com.anaptecs.jeaf.json.impl.test;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Date;
-
-import org.junit.jupiter.api.Test;
 
 import com.anaptecs.jeaf.core.api.ServiceObjectID;
 import com.anaptecs.jeaf.json.impl.ObjectMapperContextResolver;
@@ -19,6 +17,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
 import com.fasterxml.jackson.databind.json.JsonMapper;
+import org.junit.jupiter.api.Test;
 
 class ContextResolverTest {
 

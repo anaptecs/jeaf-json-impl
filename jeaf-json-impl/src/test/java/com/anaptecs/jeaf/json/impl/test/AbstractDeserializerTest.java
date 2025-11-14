@@ -5,8 +5,8 @@
  */
 package com.anaptecs.jeaf.json.impl.test;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -16,8 +16,6 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-
-import org.junit.jupiter.api.Test;
 
 import com.anaptecs.jeaf.json.api.JSONTools;
 import com.anaptecs.jeaf.json.impl.AbstractDeserializer;
@@ -29,6 +27,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.ObjectNode;
+import org.junit.jupiter.api.Test;
 
 /**
  * Class tests implementations of class {@link AbstractDeserializer}
@@ -41,7 +40,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Override
-  public Map<String, String> deserialize( ObjectNode pObjectNode ) {
+  public Map<String, String> deserialize(ObjectNode pObjectNode) {
     Map<String, String> lMap = new HashMap<>();
     Iterator<String> lIterator = pObjectNode.fieldNames();
     while (lIterator.hasNext()) {

@@ -5,9 +5,9 @@
  */
 package com.anaptecs.jeaf.json.impl.test;
 
-import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.io.ByteArrayOutputStream;
 import java.io.File;
@@ -19,9 +19,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-
 import com.anaptecs.jeaf.json.api.JSONMessages;
 import com.anaptecs.jeaf.json.api.JSONTools;
 import com.anaptecs.jeaf.json.impl.test.domain.Broken;
@@ -31,6 +28,8 @@ import com.anaptecs.jeaf.json.impl.test.idtest.Reseller;
 import com.anaptecs.jeaf.tools.api.file.FileTools;
 import com.anaptecs.jeaf.xfun.api.checks.InvalidParameterException;
 import com.anaptecs.jeaf.xfun.api.errorhandling.JEAFSystemException;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 class SerializationTest {
   private Reseller reseller;

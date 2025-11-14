@@ -5,10 +5,8 @@
  */
 package com.anaptecs.jeaf.json.impl;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import com.anaptecs.jeaf.json.api.JSONMessages;
 import com.anaptecs.jeaf.json.api.JSONTools;
@@ -19,6 +17,7 @@ import com.anaptecs.jeaf.xfun.api.errorhandling.JEAFSystemException;
 import com.anaptecs.jeaf.xfun.api.info.ApplicationInfo;
 import com.anaptecs.jeaf.xfun.api.info.ApplicationProvider;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
+import org.junit.jupiter.api.Test;
 
 class ApplicationInfoTest {
   @Test

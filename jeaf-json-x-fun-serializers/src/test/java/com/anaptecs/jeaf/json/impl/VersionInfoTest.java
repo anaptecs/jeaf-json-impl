@@ -5,17 +5,16 @@
  */
 package com.anaptecs.jeaf.json.impl;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import java.util.Date;
-
-import org.junit.jupiter.api.Test;
 
 import com.anaptecs.jeaf.json.api.JSONTools;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.junit.jupiter.api.Test;
 
 class VersionInfoTest {
 

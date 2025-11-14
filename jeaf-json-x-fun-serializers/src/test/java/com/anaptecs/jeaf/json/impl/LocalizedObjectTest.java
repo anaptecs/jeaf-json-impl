@@ -5,10 +5,8 @@
  */
 package com.anaptecs.jeaf.json.impl;
 
-import static org.junit.Assert.fail;
 import static org.junit.jupiter.api.Assertions.assertEquals;
-
-import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.fail;
 
 import com.anaptecs.jeaf.json.api.JSONMessages;
 import com.anaptecs.jeaf.json.api.JSONTools;
@@ -18,6 +16,7 @@ import com.anaptecs.jeaf.xfun.api.errorhandling.JEAFSystemException;
 import com.anaptecs.jeaf.xfun.api.messages.LocalizedString;
 import com.anaptecs.jeaf.xfun.api.messages.MessageID;
 import com.anaptecs.jeaf.xfun.api.trace.TraceLevel;
+import org.junit.jupiter.api.Test;
 
 class LocalizedObjectTest {
   @Test
