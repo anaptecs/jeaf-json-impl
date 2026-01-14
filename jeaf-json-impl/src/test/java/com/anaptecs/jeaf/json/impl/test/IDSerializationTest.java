@@ -14,12 +14,10 @@ import java.util.List;
 import com.anaptecs.jeaf.json.api.JSONTools;
 import com.anaptecs.jeaf.json.impl.test.idtest.Product;
 import com.anaptecs.jeaf.json.impl.test.idtest.Reseller;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.type.CollectionType;
 
 class IDSerializationTest {
   private Reseller reseller;
@@ -62,7 +60,7 @@ class IDSerializationTest {
   }
 
   @Test
-  void testIDDeserialization( ) throws JsonMappingException, JsonProcessingException {
+  void testIDDeserialization( ) {
     String lJSON =
         "[{\"id\":4711,\"name\":\"Fancy Product\",\"resellers\":[{\"id\":1234,\"name\":\"Big big Reseller\"}]},{\"id\":815,\"name\":\"Boring Product\",\"resellers\":[1234]}]";
     ObjectMapper lObjectMapper = tools.getDefaultObjectMapper();

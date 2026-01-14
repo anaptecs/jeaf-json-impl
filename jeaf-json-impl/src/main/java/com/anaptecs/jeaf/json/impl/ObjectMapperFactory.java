@@ -10,14 +10,14 @@ import java.util.List;
 import com.anaptecs.jeaf.json.annotations.ObjectMapperConfig;
 import com.anaptecs.jeaf.json.api.ObjectMapperModuleFactory;
 import com.anaptecs.jeaf.xfun.api.checks.Check;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.introspect.VisibilityChecker;
-import com.fasterxml.jackson.databind.json.JsonMapper;
-import com.fasterxml.jackson.databind.json.JsonMapper.Builder;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.json.JsonMapper;
+import tools.jackson.databind.json.JsonMapper.Builder;
 
 /**
  * Class can be used to create new object mappers for JSON serialization.
- * 
+ *
  * @author JEAF Development Team
  */
 public class ObjectMapperFactory {
@@ -34,7 +34,7 @@ public class ObjectMapperFactory {
 
   /**
    * Method creates a new {@link ObjectMapper} based on the default configuration mechanism {@link ObjectMapperConfig}.
-   * 
+   *
    * @return {@link ObjectMapper} Created object mapper. The method never returns null.
    */
   public static ObjectMapper createObjectMapper( ) {
@@ -43,11 +43,11 @@ public class ObjectMapperFactory {
 
   /**
    * Method creates a new {@link ObjectMapper} based on the passed configuration.
-   * 
+   *
    * @param pConfiguration Configuration for the {@link ObjectMapper}. The parameter must not be null.
    * @return {@link ObjectMapper} Created object mapper. The method never returns null.
    */
-  public static ObjectMapper createObjectMapper( ObjectMapperConfiguration pConfiguration ) {
+  public static ObjectMapper createObjectMapper(ObjectMapperConfiguration pConfiguration) {
     // Check parameters.
     Check.checkInvalidParameterNull(pConfiguration, "pConfiguration");
 
@@ -55,13 +55,18 @@ public class ObjectMapperFactory {
     Builder lBuilder = JsonMapper.builder();
 
     // Set default visibilities.
-    VisibilityChecker<?> lVisibilityChecker = VisibilityChecker.Std.defaultInstance();
-    lVisibilityChecker = lVisibilityChecker.withFieldVisibility(pConfiguration.getDefaultFieldVisibility());
-    lVisibilityChecker = lVisibilityChecker.withGetterVisibility(pConfiguration.getDefaultGetterVisibility());
-    lVisibilityChecker = lVisibilityChecker.withIsGetterVisibility(pConfiguration.getDefaultSetterVisibility());
-    lVisibilityChecker = lVisibilityChecker.withSetterVisibility(pConfiguration.getDefaultSetterVisibility());
-    lVisibilityChecker = lVisibilityChecker.withCreatorVisibility(pConfiguration.getDefaultCreatorVisibility());
-    lBuilder.visibility(lVisibilityChecker);
+    lBuilder.changeDefaultVisibility(v -> v.withFieldVisibility(pConfiguration.getDefaultFieldVisibility()));
+    lBuilder.changeDefaultVisibility(v -> v.withGetterVisibility(pConfiguration.getDefaultGetterVisibility()));
+    lBuilder.changeDefaultVisibility(v -> v.withIsGetterVisibility(pConfiguration.getDefaultSetterVisibility()));
+    lBuilder.changeDefaultVisibility(v -> v.withSetterVisibility(pConfiguration.getDefaultSetterVisibility()));
+    lBuilder.changeDefaultVisibility(v -> v.withCreatorVisibility(pConfiguration.getDefaultCreatorVisibility()));
+
+    // Configure which properties should be included by default.
+    lBuilder.changeDefaultPropertyInclusion(i -> i.withValueInclusion(pConfiguration.getDefaultPropertyInclusion()));
+    lBuilder.changeDefaultPropertyInclusion(i -> i.withContentInclusion(pConfiguration.getDefaultPropertyInclusion()));
+
+    // For better JSON backward compatibility with Jackson 2 we preserve the property order as it was in Jackson 2
+    lBuilder.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
 
     // Configure mapper features
     lBuilder.enable(pConfiguration.getEnabledMapperFeatures());
@@ -79,9 +84,6 @@ public class ObjectMapperFactory {
 
     // Create object mapper.
     JsonMapper lObjectMapper = lBuilder.build();
-
-    // Configure which properties should be included by default.
-    lObjectMapper.setDefaultPropertyInclusion(pConfiguration.getDefaultPropertyInclusion());
 
     return lObjectMapper;
   }

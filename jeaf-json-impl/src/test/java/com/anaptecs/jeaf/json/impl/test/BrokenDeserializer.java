@@ -5,24 +5,20 @@
  */
 package com.anaptecs.jeaf.json.impl.test;
 
-import java.io.IOException;
-
 import com.anaptecs.jeaf.json.impl.test.domain.Broken;
-import com.fasterxml.jackson.core.JacksonException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.deser.std.StdDeserializer;
 
 public class BrokenDeserializer extends StdDeserializer<Broken> {
-  private static final long serialVersionUID = 1L;
 
   public BrokenDeserializer( ) {
     super(Broken.class);
   }
 
   @Override
-  public Broken deserialize( JsonParser pP, DeserializationContext pCtxt ) throws IOException, JacksonException {
-    throw new IOException("I'm so broken!");
+  public Broken deserialize(JsonParser pP, DeserializationContext pCtxt) {
+    throw new RuntimeException("I'm so broken!");
   }
 
 }

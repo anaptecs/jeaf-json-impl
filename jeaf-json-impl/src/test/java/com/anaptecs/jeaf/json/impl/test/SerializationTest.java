@@ -78,8 +78,8 @@ class SerializationTest {
     }
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.JSON_SERIALIZATION_FAILED, e.getErrorCode());
-      assertTrue(e.getMessage().endsWith(
-          "Exception during JSON serialization. Unexpected IOException (of type java.io.IOException): I'm so broken!"));
+      assertTrue(e.getMessage().contains(
+          "Exception during JSON serialization. I'm so broken!"));
     }
 
     // Test serialization of binary content.
@@ -118,8 +118,8 @@ class SerializationTest {
     }
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.JSON_SERIALIZATION_FAILED, e.getErrorCode());
-      assertTrue(e.getMessage().endsWith(
-          "Exception during JSON serialization. Unexpected IOException (of type java.io.IOException): I'm so broken!"));
+      assertTrue(e.getMessage().contains(
+          "Exception during JSON serialization. I'm so broken!"));
     }
   }
 
@@ -141,7 +141,7 @@ class SerializationTest {
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.JSON_SERIALIZATION_FAILED, e.getErrorCode());
       assertTrue(e.getMessage().endsWith(
-          "Exception during JSON serialization. Unexpected IOException (of type java.io.IOException): I'm so broken!"));
+          "Exception during JSON serialization. I'm so broken!"));
     }
   }
 
@@ -173,8 +173,7 @@ class SerializationTest {
     }
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.JSON_SERIALIZATION_FAILED, e.getErrorCode());
-      assertTrue(e.getMessage().endsWith(
-          "Exception during JSON serialization. Unexpected IOException (of type java.io.IOException): I'm so broken!"));
+      assertTrue(e.getMessage().contains("Exception during JSON serialization. I'm so broken!"));
     }
   }
 
@@ -253,7 +252,7 @@ class SerializationTest {
     }
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.JSON_SERIALIZATION_FAILED, e.getErrorCode());
-      assertTrue(e.getMessage().endsWith("Exception during JSON serialization. I'm so broken!"));
+      assertTrue(e.getMessage().contains("Exception during JSON serialization. I'm so broken!"));
     }
   }
 
@@ -337,7 +336,7 @@ class SerializationTest {
     }
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.JSON_SERIALIZATION_FAILED, e.getErrorCode());
-      assertTrue(e.getMessage().endsWith("Exception during JSON serialization. I'm so broken!"));
+      assertTrue(e.getMessage().contains("Exception during JSON serialization. I'm so broken!"));
     }
   }
 
@@ -415,7 +414,7 @@ class SerializationTest {
     }
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.JSON_SERIALIZATION_FAILED, e.getErrorCode());
-      assertTrue(e.getMessage().endsWith("Exception during JSON serialization. I'm so broken!"));
+      assertTrue(e.getMessage().contains("Exception during JSON serialization. I'm so broken!"));
     }
   }
 

@@ -6,18 +6,16 @@
 package com.anaptecs.jeaf.json.impl.test.idtest;
 
 import com.anaptecs.jeaf.json.impl.AbstractDeserializer;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.ObjectNode;
 
 public class ResellerDeserializer extends AbstractDeserializer<Reseller> {
-  private static final long serialVersionUID = 1L;
-
   protected ResellerDeserializer( ) {
     super(Reseller.class);
     // TODO Auto-generated constructor stub
   }
 
   @Override
-  public Reseller deserialize( ObjectNode pObjectNode ) {
+  public Reseller deserialize(ObjectNode pObjectNode) {
     return null;
   }
 }

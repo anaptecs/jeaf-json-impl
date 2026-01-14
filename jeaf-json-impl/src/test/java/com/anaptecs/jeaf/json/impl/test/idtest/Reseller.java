@@ -7,7 +7,7 @@ package com.anaptecs.jeaf.json.impl.test.idtest;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
-import com.fasterxml.jackson.databind.annotation.JsonPOJOBuilder;
+import tools.jackson.databind.annotation.JsonPOJOBuilder;
 
 @JsonIdentityInfo(property = "id", generator = ObjectIdGenerators.PropertyGenerator.class)
 // @JsonDeserialize(builder = Reseller.Builder.class)
@@ -49,7 +49,7 @@ public class Reseller {
       return id;
     }
 
-    public void setId( long pId ) {
+    public void setId(long pId) {
       id = pId;
     }
 
@@ -57,7 +57,7 @@ public class Reseller {
       return name;
     }
 
-    public void setName( String pName ) {
+    public void setName(String pName) {
       name = pName;
     }
 

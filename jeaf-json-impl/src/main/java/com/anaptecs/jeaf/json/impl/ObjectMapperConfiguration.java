@@ -17,13 +17,13 @@ import com.anaptecs.jeaf.xfun.api.config.AnnotationBasedConfiguration;
 import com.anaptecs.jeaf.xfun.api.config.ConfigurationReader;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.SerializationFeature;
 
 /**
  * Class can be used to read annotation based configuration for ObjectMappers.
- * 
+ *
  * @author JEAF Development Team
  */
 public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<ObjectMapperConfig> {
@@ -36,7 +36,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
 
   /**
    * Initialize object. During initialization configurations will be loaded.
-   * 
+   *
    * @param pCustomConfigurationResourceName Name of the file which contains the class name of the custom configuration
    * class. The parameter must not be null.
    * @param pBasePackagePath Path under which the file should be found in the classpath. The parameter may be null.
@@ -124,7 +124,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   }
 
   @Override
-  public List<String> checkCustomConfiguration( ObjectMapperConfig pCustomConfiguration ) {
+  public List<String> checkCustomConfiguration(ObjectMapperConfig pCustomConfiguration) {
     // Nothing to do.
     return Collections.emptyList();
   }
@@ -132,7 +132,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the default field visibility that should be used by an object mapper if nothing specific is defined
    * on class or field level.
-   * 
+   *
    * @return {@link Visibility} Default field visibility. The method never returns null.
    */
   public Visibility getDefaultFieldVisibility( ) {
@@ -142,7 +142,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the default getter visibility that should be used by an object mapper if nothing specific is defined
    * on class or method level.
-   * 
+   *
    * @return {@link Visibility} Default field visibility. The method never returns null.
    */
   public Visibility getDefaultGetterVisibility( ) {
@@ -152,7 +152,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the default setter visibility that should be used by an object mapper if nothing specific is defined
    * on class or method level.
-   * 
+   *
    * @return {@link Visibility} Default field visibility. The method never returns null.
    */
   public Visibility getDefaultSetterVisibility( ) {
@@ -162,7 +162,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the default creator visibility that should be used by an object mapper if nothing specific is
    * defined on class or method level.
-   * 
+   *
    * @return {@link Visibility} Default field visibility. The method never returns null.
    */
   public Visibility getDefaultCreatorVisibility( ) {
@@ -181,7 +181,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the list of mapper features that should be enabled explicitly. This means that these features will
    * be enabled in addition to all features that are enabled by default.
-   * 
+   *
    * @return {@link List} List of all features that should be explicitly enabled. The method never returns null.
    */
   public MapperFeature[] getEnabledMapperFeatures( ) {
@@ -191,7 +191,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the list of mapper features that should be disabled explicitly. This means that these features will
    * be disabled in addition to all features that are disabled by default.
-   * 
+   *
    * @return {@link List} List of all features that should be explicitly disabled. The method never returns null.
    */
   public MapperFeature[] getDisabledMapperFeatures( ) {
@@ -201,7 +201,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the list of serialization features that should be enabled explicitly. This means that these features
    * will be enabled in addition to all features that are enabled by default.
-   * 
+   *
    * @return {@link List} List of all features that should be explicitly enabled. The method never returns null.
    */
   public SerializationFeature[] getEnabledSerializationFeatures( ) {
@@ -211,7 +211,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the list of serialization features that should be disabled explicitly. This means that these
    * features will be disabled in addition to all features that are disabled by default.
-   * 
+   *
    * @return {@link List} List of all features that should be explicitly disabled. The method never returns null.
    */
   public SerializationFeature[] getDisabledSerializationFeatures( ) {
@@ -221,7 +221,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the list of deserialization features that should be enabled explicitly. This means that these
    * features will be enabled in addition to all features that are enabled by default.
-   * 
+   *
    * @return {@link List} List of all features that should be explicitly enabled. The method never returns null.
    */
   public DeserializationFeature[] getEnabledDeserializationFeatures( ) {
@@ -231,7 +231,7 @@ public class ObjectMapperConfiguration extends AnnotationBasedConfiguration<Obje
   /**
    * Method returns the list of deserialization features that should be disabled explicitly. This means that these
    * features will be disabled in addition to all features that are disabled by default.
-   * 
+   *
    * @return {@link List} List of all features that should be explicitly disabled. The method never returns null.
    */
   public DeserializationFeature[] getDisabledDeserializationFeatures( ) {

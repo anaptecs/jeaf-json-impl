@@ -8,9 +8,9 @@ package com.anaptecs.jeaf.json.impl.test;
 import com.anaptecs.jeaf.json.annotations.ObjectMapperConfig;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.SerializationFeature;
 
 @ObjectMapperConfig(
     defaultFieldVisibility = Visibility.NON_PRIVATE,

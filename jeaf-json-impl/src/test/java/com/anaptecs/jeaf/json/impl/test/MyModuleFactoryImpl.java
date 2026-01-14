@@ -9,14 +9,14 @@ import com.anaptecs.jeaf.json.annotations.ModuleFactory;
 import com.anaptecs.jeaf.json.api.ObjectMapperModuleFactory;
 import com.anaptecs.jeaf.json.impl.test.domain.Broken;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import tools.jackson.databind.JacksonModule;
+import tools.jackson.databind.module.SimpleModule;
 
 @ModuleFactory
 public class MyModuleFactoryImpl implements ObjectMapperModuleFactory {
 
   @Override
-  public Module createModule( ) {
+  public JacksonModule createModule( ) {
     SimpleModule lModule = new SimpleModule("Test Module");
 
     lModule.addSerializer(VersionInfo.class, new VersionInfoSerializer());

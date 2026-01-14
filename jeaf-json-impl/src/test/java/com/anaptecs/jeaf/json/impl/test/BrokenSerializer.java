@@ -5,22 +5,18 @@
  */
 package com.anaptecs.jeaf.json.impl.test;
 
-import java.io.IOException;
-
 import com.anaptecs.jeaf.json.impl.test.domain.Broken;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ser.std.StdSerializer;
 
 public class BrokenSerializer extends StdSerializer<Broken> {
-  private static final long serialVersionUID = 1L;
-
   public BrokenSerializer( ) {
     super(Broken.class);
   }
 
   @Override
-  public void serialize( Broken pObject, JsonGenerator pGenerator, SerializerProvider pProvider ) throws IOException {
-    throw new IOException("I'm so broken!");
+  public void serialize(Broken pObject, JsonGenerator pGenerator, SerializationContext pProvider) {
+    throw new RuntimeException("I'm so broken!");
   }
 }

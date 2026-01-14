@@ -5,24 +5,22 @@
  */
 package com.anaptecs.jeaf.json.impl.serializers.core;
 
-import java.io.IOException;
-
 import com.anaptecs.jeaf.core.api.ServiceObjectID;
 import com.anaptecs.jeaf.json.api.JSONMessages;
 import com.anaptecs.jeaf.xfun.api.common.AbstractObjectID;
 import com.anaptecs.jeaf.xfun.api.errorhandling.JEAFSystemException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.databind.DeserializationContext;
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.TextNode;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.DeserializationContext;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.ValueDeserializer;
+import tools.jackson.databind.node.StringNode;
 
 /**
  * Class implements a generic JSON deserializer for {@link AbstractObjectID} implementations.
- * 
+ *
  * @author JEAF Development Team
  */
-public abstract class AbstractObjectIDDeserializer<T extends AbstractObjectID<?>> extends JsonDeserializer<T> {
+public abstract class AbstractObjectIDDeserializer<T extends AbstractObjectID<?>> extends ValueDeserializer<T> {
   /**
    * Regex is used to separate objectID and version label part of an serialized objectID.
    */
@@ -30,19 +28,19 @@ public abstract class AbstractObjectIDDeserializer<T extends AbstractObjectID<?>
 
   /**
    * Method reads version info data from the JSON data and creates a {@link ServiceObjectID} object out of it.
-   * 
+   *
    * @param pParser JSON parser. The parameter must not be null.
    * @param pContext Context information. The parameter is not used by this implementation.
    */
   @Override
-  public final T deserialize( JsonParser pParser, DeserializationContext pContext ) throws IOException {
+  public final T deserialize(JsonParser pParser, DeserializationContext pContext) {
     // Parse JSON content.
-    JsonNode lNode = pParser.getCodec().readTree(pParser);
+    JsonNode lNode = pParser.objectReadContext().readTree(pParser);
 
     // We expect that objectIDs are always serialized as plain text which will result in a TextNode.
-    if (lNode instanceof TextNode) {
+    if (lNode instanceof StringNode) {
       // Get serialized version of objectID.
-      String lSerializedID = lNode.asText();
+      String lSerializedID = lNode.asString();
 
       // Try to resolve may be existing version label
       String[] lSplit = lSerializedID.split(REGEX);
@@ -69,10 +67,10 @@ public abstract class AbstractObjectIDDeserializer<T extends AbstractObjectID<?>
   /**
    * Abstract method needs to be implemented by concrete subclasses in oder to create a concrete object ID
    * implementation based on the passed objectID and version label.
-   * 
+   *
    * @param pObjectId String representation of the object ID. The parameter must not be null.
    * @param pVersionLabel Version label the belongs to the object ID. The parameter may be null.
    * @return T Created ObjectID object. The method must not return null.
    */
-  protected abstract T createObjectID( String pObjectId, Integer pVersionLabel );
+  protected abstract T createObjectID(String pObjectId, Integer pVersionLabel);
 }

@@ -9,16 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
 import com.anaptecs.jeaf.json.annotations.ObjectMapperConfig;
 import com.anaptecs.jeaf.json.api.ObjectMapperModuleFactory;
 import com.anaptecs.jeaf.json.impl.ObjectMapperConfiguration;
 import com.fasterxml.jackson.annotation.JsonAutoDetect.Visibility;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.MapperFeature;
-import com.fasterxml.jackson.databind.SerializationFeature;
+import org.junit.jupiter.api.Test;
+import tools.jackson.databind.DeserializationFeature;
+import tools.jackson.databind.MapperFeature;
+import tools.jackson.databind.SerializationFeature;
 
 class ObjectMapperConfigurationTest {
   @Test

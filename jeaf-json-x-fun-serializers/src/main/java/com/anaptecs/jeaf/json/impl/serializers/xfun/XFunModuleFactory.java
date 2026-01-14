@@ -13,13 +13,13 @@ import com.anaptecs.jeaf.xfun.api.info.ApplicationProvider;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
 import com.anaptecs.jeaf.xfun.api.messages.LocalizedString;
 import com.anaptecs.jeaf.xfun.api.messages.MessageID;
-import com.fasterxml.jackson.databind.Module;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import tools.jackson.databind.JacksonModule;
+import tools.jackson.databind.module.SimpleModule;
 
 /**
  * Factory is responsible to provide a module that assembles all JEAF X-Fun classes into a module for JSON serialization
  * / deserialization.
- * 
+ *
  * @author JEAF Development Team
  */
 @ModuleFactory
@@ -29,7 +29,7 @@ public class XFunModuleFactory implements ObjectMapperModuleFactory {
    * Method creates a module that consists of all serializer / deserializers for JEAF X-Fun classes.
    */
   @Override
-  public Module createModule( ) {
+  public JacksonModule createModule( ) {
     // Create module for JEAF Core API classes
     SimpleModule lModule = new SimpleModule("JEAF X-Fun Module");
 

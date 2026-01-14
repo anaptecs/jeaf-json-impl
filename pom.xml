@@ -14,7 +14,7 @@
 	<version>1.8.1-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<name>JEAF JSON Impl Project</name>
-	<description>JEAF JSON contains a set of classes that simplify usage of JSON (Jackson 2). This projects contains the default implementation of the public API classes.</description>
+	<description>JEAF JSON contains a set of classes that simplify usage of JSON (Jackson 3). This projects contains the default implementation of the public API classes.</description>
 	<url>https://www.anaptecs.de/jeaf</url>
 
 	<scm>

@@ -5,29 +5,23 @@
  */
 package com.anaptecs.jeaf.json.impl.test;
 
-import java.io.IOException;
-
 import com.anaptecs.jeaf.tools.api.date.DateTools;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.SerializerProvider;
-import com.fasterxml.jackson.databind.ser.std.StdSerializer;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ser.std.StdSerializer;
 
 public class VersionInfoSerializer extends StdSerializer<VersionInfo> {
-  private static final long serialVersionUID = 1L;
-
   public VersionInfoSerializer( ) {
     super(VersionInfo.class);
   }
 
   @Override
-  public void serialize( VersionInfo pVersionInfo, JsonGenerator pGenerator, SerializerProvider pProvider )
-    throws IOException {
-
+  public void serialize(VersionInfo pVersionInfo, JsonGenerator pGenerator, SerializationContext pProvider) {
     pGenerator.writeStartObject();
-    pGenerator.writeStringField("version", pVersionInfo.getVersionString());
-    pGenerator.writeStringField("date", DateTools.getDateTools().toTimestampString(pVersionInfo.getCreationDate()));
-    pGenerator.writeBooleanField("isUnknownVersion", pVersionInfo.isUnknownVersion());
+    pGenerator.writeStringProperty("version", pVersionInfo.getVersionString());
+    pGenerator.writeStringProperty("date", DateTools.getDateTools().toTimestampString(pVersionInfo.getCreationDate()));
+    pGenerator.writeBooleanProperty("isUnknownVersion", pVersionInfo.isUnknownVersion());
     pGenerator.writeEndObject();
   }
 }

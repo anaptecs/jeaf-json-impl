@@ -8,12 +8,12 @@ package com.anaptecs.jeaf.json.impl;
 import javax.ws.rs.ext.ContextResolver;
 import javax.ws.rs.ext.Provider;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
+import tools.jackson.databind.ObjectMapper;
 
 /**
  * Class implements a context resolver that should be used instead of the default implementation when it comes to JSON
  * object mapping.
- * 
+ *
  * @author JEAF Development Team
  */
 @Provider
@@ -33,7 +33,7 @@ public class ObjectMapperContextResolver implements ContextResolver<ObjectMapper
    * Method will always return the same {@link ObjectMapper}.
    */
   @Override
-  public ObjectMapper getContext( Class<?> type ) {
+  public ObjectMapper getContext(Class<?> type) {
     return mapper;
   }
 }

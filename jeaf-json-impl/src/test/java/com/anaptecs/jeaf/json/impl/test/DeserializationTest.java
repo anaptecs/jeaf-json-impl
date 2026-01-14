@@ -26,10 +26,9 @@ import com.anaptecs.jeaf.tools.api.date.DateTools;
 import com.anaptecs.jeaf.xfun.api.checks.InvalidParameterException;
 import com.anaptecs.jeaf.xfun.api.errorhandling.JEAFSystemException;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 
 class DeserializationTest {
   private JSONTools tools = JSONTools.getJSONTools();
@@ -501,7 +500,7 @@ class DeserializationTest {
   }
 
   @Test
-  void testAbstractDeserializer( ) throws JsonProcessingException {
+  void testAbstractDeserializer( ) {
     ObjectMapper lObjectMapper = tools.getDefaultObjectMapper();
     String lJSON = "{\"version\":\"3.1.2\",\"date\":\"2022-01-19 17:02:45.551\",\"isUnknownVersion\":false}";
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree(lJSON);

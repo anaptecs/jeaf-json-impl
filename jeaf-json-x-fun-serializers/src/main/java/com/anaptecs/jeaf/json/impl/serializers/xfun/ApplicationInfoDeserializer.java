@@ -9,17 +9,15 @@ import com.anaptecs.jeaf.json.impl.AbstractDeserializer;
 import com.anaptecs.jeaf.xfun.api.info.ApplicationInfo;
 import com.anaptecs.jeaf.xfun.api.info.ApplicationProvider;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * Class implements custom JSON deserializer for {@link VersionInfo}.
- * 
+ *
  * @author JEAF Development Team
  */
 public class ApplicationInfoDeserializer extends AbstractDeserializer<ApplicationInfo> {
-  private static final long serialVersionUID = 1L;
-
   /**
    * Deserializer for {@link ApplicationProvider}
    */
@@ -38,7 +36,7 @@ public class ApplicationInfoDeserializer extends AbstractDeserializer<Applicatio
   }
 
   @Override
-  public ApplicationInfo deserialize( ObjectNode pObjectNode ) {
+  public ApplicationInfo deserialize(ObjectNode pObjectNode) {
     JsonNode lUnknownAppNode = pObjectNode.get("isUnknownApplication");
     boolean lUnknownApp;
     if (lUnknownAppNode != null && lUnknownAppNode.isNull() == false) {

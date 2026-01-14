@@ -12,14 +12,13 @@ import java.util.Date;
 
 import com.anaptecs.jeaf.json.api.JSONTools;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
 
 class VersionInfoTest {
 
   @Test
-  void testVersionInfoSerialization( ) throws JsonProcessingException {
+  void testVersionInfoSerialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
 
     // Test serialization / deserialization of version info
