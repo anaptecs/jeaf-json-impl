@@ -65,7 +65,7 @@ public class ObjectMapperFactory {
     lBuilder.changeDefaultPropertyInclusion(i -> i.withValueInclusion(pConfiguration.getDefaultPropertyInclusion()));
     lBuilder.changeDefaultPropertyInclusion(i -> i.withContentInclusion(pConfiguration.getDefaultPropertyInclusion()));
 
-    // For better JSON backward compatibility with Jackson 2 we preserve the property order as it ws in Jackson 2
+    // For better JSON backward compatibility with Jackson 2 we preserve the property order as it was in Jackson 2
     lBuilder.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
 
     // Configure mapper features
