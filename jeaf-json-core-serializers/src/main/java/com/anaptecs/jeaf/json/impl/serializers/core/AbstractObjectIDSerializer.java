@@ -5,14 +5,12 @@
  */
 package com.anaptecs.jeaf.json.impl.serializers.core;
 
-import java.io.IOException;
-
 import com.anaptecs.jeaf.xfun.api.common.AbstractObjectID;
-import com.fasterxml.jackson.core.JsonGenerator;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializerProvider;
+import tools.jackson.core.JsonGenerator;
+import tools.jackson.databind.SerializationContext;
+import tools.jackson.databind.ValueSerializer;
 
-public class AbstractObjectIDSerializer extends JsonSerializer<AbstractObjectID<?>> {
+public class AbstractObjectIDSerializer extends ValueSerializer<AbstractObjectID<?>> {
   /**
    * Delimiter is used to separate objectID and version label of an {@link AbstractObjectID}
    */
@@ -23,8 +21,7 @@ public class AbstractObjectIDSerializer extends JsonSerializer<AbstractObjectID<
    * representation.
    */
   @Override
-  public void serialize( AbstractObjectID<?> pValue, JsonGenerator pGenerator, SerializerProvider pSerializers )
-    throws IOException {
+  public void serialize(AbstractObjectID<?> pValue, JsonGenerator pGenerator, SerializationContext pSerializers) {
     StringBuilder lBuilder = new StringBuilder();
     lBuilder.append(pValue.getObjectID());
     if (pValue.isVersioned()) {

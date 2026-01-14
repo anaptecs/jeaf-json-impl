@@ -17,16 +17,14 @@ import com.anaptecs.jeaf.core.api.ServiceObjectID;
 import com.anaptecs.jeaf.json.api.JSONMessages;
 import com.anaptecs.jeaf.json.api.JSONTools;
 import com.anaptecs.jeaf.xfun.api.errorhandling.JEAFSystemException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.CollectionType;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.type.CollectionType;
 
 class ServiceObjectIDTest {
 
   @Test
-  void testServiceObjectIDSerialization( ) throws JsonProcessingException {
+  void testServiceObjectIDSerialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     // Try to serialize and deserialize ServiceObjectID
     ServiceObjectID lServiceObjectID = new ServiceObjectID("ABC123", 2);
@@ -57,12 +55,12 @@ class ServiceObjectIDTest {
     catch (JEAFSystemException e) {
       assertEquals(JSONMessages.UNEXPECTED_NODE_TYPE_FOR_OBJECT_ID_DESERIAL, e.getErrorCode());
       assertTrue(e.getMessage().endsWith(
-          "1802] Only TextNodes are expected to be processed by this deserializer. Current JSON node '{\"versionLabel\":4711}' is of type 'com.fasterxml.jackson.databind.node.ObjectNode'."));
+          "1802] Only TextNodes are expected to be processed by this deserializer. Current JSON node '{\"versionLabel\":4711}' is of type 'tools.jackson.databind.node.ObjectNode'."));
     }
   }
 
   @Test
-  void testObjectSerialization( ) throws JsonMappingException, JsonProcessingException {
+  void testObjectSerialization( ) {
     Book lBook = new Book();
     lBook.oid = new ServiceObjectID("123456789", 4711);
     lBook.title = "Maus";

@@ -6,6 +6,7 @@
 package com.anaptecs.jeaf.json.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.anaptecs.jeaf.json.api.JSONMessages;
@@ -258,15 +259,17 @@ class ApplicationInfoTest {
       lTools.read("{\"applicationID\":null,\"isUnknownApplication\":false}", ApplicationInfo.class);
       fail();
     }
-    catch (IllegalArgumentException e) {
-      assertEquals("'pApplicationID' must not be null.", e.getMessage());
+    catch (JEAFSystemException e) {
+      assertEquals(JSONMessages.JSON_DESERIALIZATION_FAILED, e.getErrorCode());
+      assertTrue(e.getMessage().contains("'pApplicationID' must not be null."));
     }
     try {
       lTools.read("{\"isUnknownApplication\":false}", ApplicationInfo.class);
       fail();
     }
-    catch (IllegalArgumentException e) {
-      assertEquals("'pApplicationID' must not be null.", e.getMessage());
+    catch (JEAFSystemException e) {
+      assertEquals(JSONMessages.JSON_DESERIALIZATION_FAILED, e.getErrorCode());
+      assertTrue(e.getMessage().contains("'pApplicationID' must not be null."));
     }
 
   }

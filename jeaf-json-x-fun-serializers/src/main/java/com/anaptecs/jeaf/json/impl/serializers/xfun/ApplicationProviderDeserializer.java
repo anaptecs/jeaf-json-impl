@@ -9,16 +9,14 @@ import com.anaptecs.jeaf.json.impl.AbstractDeserializer;
 import com.anaptecs.jeaf.xfun.api.checks.Check;
 import com.anaptecs.jeaf.xfun.api.info.ApplicationProvider;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * Class implements custom JSON deserializer for {@link VersionInfo}.
- * 
+ *
  * @author JEAF Development Team
  */
 public class ApplicationProviderDeserializer extends AbstractDeserializer<ApplicationProvider> {
-  private static final long serialVersionUID = 1L;
-
   /**
    * Initialize object.
    */
@@ -30,7 +28,7 @@ public class ApplicationProviderDeserializer extends AbstractDeserializer<Applic
    * Method converts the passed JSON {@link ObjectNode} into an {@link ApplicationProvider} object.
    */
   @Override
-  public ApplicationProvider deserialize( ObjectNode pObjectNode ) {
+  public ApplicationProvider deserialize(ObjectNode pObjectNode) {
     // Check parameter
     Check.checkInvalidParameterNull(pObjectNode, "pObjectNode");
 

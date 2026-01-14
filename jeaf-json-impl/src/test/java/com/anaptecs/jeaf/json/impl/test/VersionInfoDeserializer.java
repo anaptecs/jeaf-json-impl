@@ -9,18 +9,16 @@ import java.util.Date;
 
 import com.anaptecs.jeaf.json.impl.AbstractDeserializer;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
 
 public class VersionInfoDeserializer extends AbstractDeserializer<VersionInfo> {
-  private static final long serialVersionUID = 1L;
-
   public VersionInfoDeserializer( ) {
     super(VersionInfo.class);
   }
 
   @Override
-  public VersionInfo deserialize( ObjectNode pObjectNode ) {
+  public VersionInfo deserialize(ObjectNode pObjectNode) {
     // Resolve unknown version flag
     boolean lUnknownVersion;
     JsonNode lUnknownVersionValueNode = pObjectNode.get("isUnknownVersion");

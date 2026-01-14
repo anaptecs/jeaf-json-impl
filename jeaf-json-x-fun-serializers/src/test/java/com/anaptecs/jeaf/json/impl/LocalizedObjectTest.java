@@ -6,6 +6,7 @@
 package com.anaptecs.jeaf.json.impl;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import com.anaptecs.jeaf.json.api.JSONMessages;
@@ -71,8 +72,9 @@ class LocalizedObjectTest {
       lTools.read("{\"localizationID\":123456,\"traceLevel\":\"TRACE_XXX\"}", MessageID.class);
       fail();
     }
-    catch (IllegalArgumentException e) {
-      assertEquals("No enum constant com.anaptecs.jeaf.xfun.api.trace.TraceLevel.TRACE_XXX", e.getMessage());
+    catch (JEAFSystemException e) {
+      assertEquals(JSONMessages.JSON_DESERIALIZATION_FAILED, e.getErrorCode());
+      assertTrue(e.getMessage().contains("No enum constant com.anaptecs.jeaf.xfun.api.trace.TraceLevel.TRACE_XXX"));
     }
   }
 
@@ -99,8 +101,9 @@ class LocalizedObjectTest {
       lTools.read("{\"localizationID\":123456,\"traceLevel\":\"TRACE_XXX\"}", MessageID.class);
       fail();
     }
-    catch (IllegalArgumentException e) {
-      assertEquals("No enum constant com.anaptecs.jeaf.xfun.api.trace.TraceLevel.TRACE_XXX", e.getMessage());
+    catch (JEAFSystemException e) {
+      assertEquals(JSONMessages.JSON_DESERIALIZATION_FAILED, e.getErrorCode());
+      assertTrue(e.getMessage().contains("No enum constant com.anaptecs.jeaf.xfun.api.trace.TraceLevel.TRACE_XXX"));
     }
   }
 

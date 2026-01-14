@@ -13,16 +13,15 @@ import java.util.Date;
 import com.anaptecs.jeaf.core.api.ServiceObjectID;
 import com.anaptecs.jeaf.json.impl.ObjectMapperContextResolver;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.exc.InvalidDefinitionException;
-import com.fasterxml.jackson.databind.json.JsonMapper;
 import org.junit.jupiter.api.Test;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.exc.InvalidDefinitionException;
+import tools.jackson.databind.json.JsonMapper;
 
 class ContextResolverTest {
 
   @Test
-  void testContextResolver( ) throws JsonProcessingException {
+  void testContextResolver( ) {
     JsonMapper lDefaultMapper = JsonMapper.builder().build();
 
     ServiceObjectID lServiceObjectID = new ServiceObjectID("ABC123", 2);
@@ -33,7 +32,8 @@ class ContextResolverTest {
     }
     catch (InvalidDefinitionException e) {
       assertEquals(
-          "Direct self-reference leading to cycle (through reference chain: com.anaptecs.jeaf.core.api.ServiceObjectID[\"unversionedObjectID\"]->com.anaptecs.jeaf.core.api.ServiceObjectID[\"unversionedObjectID\"])",
+          "Direct self-reference leading to cycle\n"
+              + " at [No location information] (through reference chain: com.anaptecs.jeaf.core.api.ServiceObjectID[\"unversionedObjectID\"]->com.anaptecs.jeaf.core.api.ServiceObjectID[\"unversionedObjectID\"])",
           e.getMessage());
     }
 

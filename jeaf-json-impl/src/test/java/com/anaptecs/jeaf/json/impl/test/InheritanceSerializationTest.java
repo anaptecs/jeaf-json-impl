@@ -10,21 +10,19 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.jupiter.api.Test;
-
 import com.anaptecs.jeaf.json.api.JSONTools;
 import com.anaptecs.jeaf.json.impl.test.inheritance.Company;
 import com.anaptecs.jeaf.json.impl.test.inheritance.Partner;
 import com.anaptecs.jeaf.json.impl.test.inheritance.PartnerContainer;
 import com.anaptecs.jeaf.json.impl.test.inheritance.Person;
 import com.anaptecs.jeaf.json.impl.test.inheritance.PostalAddress;
-import com.fasterxml.jackson.core.JsonProcessingException;
+import org.junit.jupiter.api.Test;
 
 class InheritanceSerializationTest {
   private final JSONTools tools = JSONTools.getJSONTools();
 
   @Test
-  void testInheritanceSerialization( ) throws JsonProcessingException {
+  void testInheritanceSerialization( ) {
     PostalAddress lAddress = new PostalAddress();
     lAddress.setStreet("Ricard-Huch-Str.");
     lAddress.setHouseNumber("71");

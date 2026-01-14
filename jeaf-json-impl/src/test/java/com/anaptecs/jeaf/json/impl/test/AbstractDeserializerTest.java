@@ -14,7 +14,6 @@ import java.math.BigInteger;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 
 import com.anaptecs.jeaf.json.api.JSONTools;
@@ -23,18 +22,15 @@ import com.anaptecs.jeaf.tools.api.ToolsMessages;
 import com.anaptecs.jeaf.tools.api.date.DateTools;
 import com.anaptecs.jeaf.xfun.api.checks.InvalidParameterException;
 import com.anaptecs.jeaf.xfun.api.errorhandling.JEAFSystemException;
-import com.fasterxml.jackson.core.JsonParser;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.junit.jupiter.api.Test;
+import tools.jackson.core.JsonParser;
+import tools.jackson.databind.ObjectMapper;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * Class tests implementations of class {@link AbstractDeserializer}
  */
 class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>> {
-  private static final long serialVersionUID = 1L;
-
   public AbstractDeserializerTest( ) {
     super(Object.class);
   }
@@ -42,10 +38,8 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   @Override
   public Map<String, String> deserialize(ObjectNode pObjectNode) {
     Map<String, String> lMap = new HashMap<>();
-    Iterator<String> lIterator = pObjectNode.fieldNames();
-    while (lIterator.hasNext()) {
-      String lFieldName = lIterator.next();
-      lMap.put(lFieldName, pObjectNode.get(lFieldName).asText());
+    for (String lFieldName : pObjectNode.propertyNames()) {
+      lMap.put(lFieldName, pObjectNode.get(lFieldName).asString());
     }
     return lMap;
   }
@@ -70,7 +64,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testStringDeserialization( ) throws JsonProcessingException {
+  void testStringDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     String lJSON = "{\"version\":\"3.1.2\",\"date\":\"2022-01-19 17:02:45.551\",\"isUnknownVersion\":false}";
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree(lJSON);
@@ -104,7 +98,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testDateDeserialization( ) throws JsonProcessingException {
+  void testDateDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     String lJSON = "{\"version\":\"3.1.2\",\"date\":\"2022-01-19 17:02:45.551\",\"isUnknownVersion\":false}";
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree(lJSON);
@@ -160,7 +154,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testCalendarDeserialization( ) throws JsonProcessingException {
+  void testCalendarDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     String lJSON = "{\"version\":\"3.1.2\",\"date\":\"2022-01-19 17:02:45.551\",\"isUnknownVersion\":false}";
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree(lJSON);
@@ -219,7 +213,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testPrimitiveBooleanDeserialization( ) throws JsonProcessingException {
+  void testPrimitiveBooleanDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"booleanValue\":\"true\"}");
 
@@ -252,7 +246,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testBooleanDeserialization( ) throws JsonProcessingException {
+  void testBooleanDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"booleanValue\":\"true\"}");
 
@@ -286,7 +280,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testPrimitiveByteDeserialization( ) throws JsonProcessingException {
+  void testPrimitiveByteDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"byteValue\":\"73\"}");
 
@@ -344,7 +338,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testByteDeserialization( ) throws JsonProcessingException {
+  void testByteDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"byteValue\":\"73\"}");
 
@@ -403,7 +397,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testPrimitiveShortDeserialization( ) throws JsonProcessingException {
+  void testPrimitiveShortDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"shortValue\":\"32023\"}");
 
@@ -461,7 +455,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testShortDeserialization( ) throws JsonProcessingException {
+  void testShortDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"shortValue\":\"32023\"}");
 
@@ -523,7 +517,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testPrimitiveIntegerDeserialization( ) throws JsonProcessingException {
+  void testPrimitiveIntegerDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"intValue\":\"77023\"}");
 
@@ -581,7 +575,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testIntegerDeserialization( ) throws JsonProcessingException {
+  void testIntegerDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"intValue\":\"77023\"}");
 
@@ -640,7 +634,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testPrimitiveLongDeserialization( ) throws JsonProcessingException {
+  void testPrimitiveLongDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"longValue\":\"78887023\"}");
 
@@ -698,7 +692,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testLongDeserialization( ) throws JsonProcessingException {
+  void testLongDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"longValue\":\"78887023\"}");
 
@@ -757,7 +751,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testBigIntegerDeserialization( ) throws JsonProcessingException {
+  void testBigIntegerDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"bigIntegerValue\":\"78887045131516164891923\"}");
 
@@ -814,7 +808,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testPrimitiveFloatDeserialization( ) throws JsonProcessingException {
+  void testPrimitiveFloatDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"floatValue\":\"770.23\"}");
 
@@ -854,7 +848,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testFloatDeserialization( ) throws JsonProcessingException {
+  void testFloatDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"floatValue\":\"770.23\"}");
 
@@ -896,7 +890,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testPrimitiveDoubleDeserialization( ) throws JsonProcessingException {
+  void testPrimitiveDoubleDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"doubleValue\":\"770.23\"}");
 
@@ -935,7 +929,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testDoubleDeserialization( ) throws JsonProcessingException {
+  void testDoubleDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode = (ObjectNode) lObjectMapper.readTree("{\"doubleValue\":\"770.23\"}");
 
@@ -975,7 +969,7 @@ class AbstractDeserializerTest extends AbstractDeserializer<Map<String, String>>
   }
 
   @Test
-  void testBigDecimalDeserialization( ) throws JsonProcessingException {
+  void testBigDecimalDeserialization( ) {
     ObjectMapper lObjectMapper = JSONTools.getJSONTools().getDefaultObjectMapper();
     ObjectNode lObjectNode =
         (ObjectNode) lObjectMapper.readTree("{\"bigDecimalValue\":\"71616131651670.2346488434654638\"}");

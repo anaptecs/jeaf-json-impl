@@ -9,17 +9,15 @@ import java.util.Date;
 
 import com.anaptecs.jeaf.json.impl.AbstractDeserializer;
 import com.anaptecs.jeaf.xfun.api.info.VersionInfo;
-import com.fasterxml.jackson.databind.JsonNode;
-import com.fasterxml.jackson.databind.node.ObjectNode;
+import tools.jackson.databind.JsonNode;
+import tools.jackson.databind.node.ObjectNode;
 
 /**
  * Class implements custom JSON deserializer for {@link VersionInfo}.
- * 
+ *
  * @author JEAF Development Team
  */
 public class VersionInfoDeserializer extends AbstractDeserializer<VersionInfo> {
-  private static final long serialVersionUID = 1L;
-
   /**
    * Initialize object.
    */
@@ -29,12 +27,12 @@ public class VersionInfoDeserializer extends AbstractDeserializer<VersionInfo> {
 
   /**
    * Method reads version info data from the JSON data and creates a {@link VersionInfo} object out of it.
-   * 
+   *
    * @param pParser JSON parser. The parameter must not be null.
    * @param pContext Context information. The parameter is not used by this implementation.
    */
   @Override
-  public VersionInfo deserialize( ObjectNode pObjectNode ) {
+  public VersionInfo deserialize(ObjectNode pObjectNode) {
     // Resolve unknown version flag
     boolean lUnknownVersion;
     JsonNode lUnknownVersionValueNode = pObjectNode.get(VersionInfoSerializer.UNKNWON_VERSION_FLAG);
