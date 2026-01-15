@@ -65,8 +65,12 @@ public class ObjectMapperFactory {
     lBuilder.changeDefaultPropertyInclusion(i -> i.withValueInclusion(pConfiguration.getDefaultPropertyInclusion()));
     lBuilder.changeDefaultPropertyInclusion(i -> i.withContentInclusion(pConfiguration.getDefaultPropertyInclusion()));
 
-    // For better JSON backward compatibility with Jackson 2 we preserve the property order as it was in Jackson 2
+    // For better backward compatibility with Jackson 2 we preserve the following settings as there were in Jackson 2
+    //
+    // For further details please have a look here:
+    // https://github.com/FasterXML/jackson/blob/main/jackson3/MIGRATING_TO_JACKSON_3.md
     lBuilder.disable(MapperFeature.SORT_PROPERTIES_ALPHABETICALLY);
+    lBuilder.enable(MapperFeature.ALLOW_FINAL_FIELDS_AS_MUTATORS);
 
     // Configure mapper features
     lBuilder.enable(pConfiguration.getEnabledMapperFeatures());
